@@ -1,0 +1,121 @@
+{
+  "info": {
+    "_postman_id": "c1f75d9e-1084-482a-bc91-ec12a93b4822",
+    "name": "Camunda 8 Lab EX-6: Leave Request API",
+    "description": "Postman Collection for SRMIST Workflow Automation Exercise 6 (EX-6): Simple Leave Request Process in Camunda 8.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Start Instance - POST /v2/process-instances (Ravi, 3 days)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"processDefinitionId\": \"leave-request\",\n  \"variables\": {\n    \"employeeName\": \"Ravi\",\n    \"days\": 3\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/v2/process-instances",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["v2", "process-instances"]
+        },
+        "description": "Lab Step 3: Starts a Leave Request process instance with employeeName: Ravi and days: 3. Expects 201 Created."
+      }
+    },
+    {
+      "name": "2. Viva Q2 - Misspelled Process ID Test (leave-requst -> 404)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"processDefinitionId\": \"leave-requst\",\n  \"variables\": {\n    \"employeeName\": \"Ravi\",\n    \"days\": 3\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/v2/process-instances",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["v2", "process-instances"]
+        },
+        "description": "Viva Question 2 Verification: Sending a misspelled processDefinitionId ('leave-requst') returns HTTP 404 NOT_FOUND."
+      }
+    },
+    {
+      "name": "3. Viva Q3 - Start Second Instance (Priya, 2 days)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"processDefinitionId\": \"leave-request\",\n  \"variables\": {\n    \"employeeName\": \"Priya\",\n    \"days\": 2\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/v2/process-instances",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["v2", "process-instances"]
+        },
+        "description": "Viva Question 3 Verification: Start second instance."
+      }
+    },
+    {
+      "name": "4. Viva Q3 - Start Third Instance (Amit, 5 days)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"processDefinitionId\": \"leave-request\",\n  \"variables\": {\n    \"employeeName\": \"Amit\",\n    \"days\": 5\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/v2/process-instances",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["v2", "process-instances"]
+        },
+        "description": "Viva Question 3 Verification: Start third instance."
+      }
+    },
+    {
+      "name": "5. Query All Active Process Instances (Viva Q3 Verification)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/v2/process-instances",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["v2", "process-instances"]
+        },
+        "description": "Returns list of all running process instances to demonstrate that exactly 3 instances are active in the cluster."
+      }
+    }
+  ]
+}

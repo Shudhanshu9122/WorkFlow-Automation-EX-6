@@ -1,0 +1,34 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: leave-request-workflow
+
+camunda:
+  client:
+    mode: saas
+    auth:
+      client-id: ${CAMUNDA_CLIENT_ID:your-camunda-client-id}
+      client-secret: ${CAMUNDA_CLIENT_SECRET:your-camunda-client-secret}
+    cloud:
+      cluster-id: ${CAMUNDA_CLUSTER_ID:your-cluster-id}
+      region: ${CAMUNDA_CLUSTER_REGION:bru-2}
+    worker:
+      defaults:
+        stream-enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    root: INFO
+    edu.srmist: DEBUG
+    io.camunda: INFO

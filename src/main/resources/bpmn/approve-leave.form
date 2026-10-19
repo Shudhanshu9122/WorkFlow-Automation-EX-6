@@ -1,0 +1,33 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.8.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "8.8.0"
+  },
+  "schemaVersion": 16,
+  "id": "approve-leave-form",
+  "components": [
+    {
+      "text": "## Employee Leave Approval\n\nPlease review the pending leave request:\n\n* **Employee Name:** {{employeeName}}\n* **Requested Leave Duration:** {{days}} Day(s)",
+      "type": "text",
+      "id": "Field_LeaveDetails"
+    },
+    {
+      "label": "Approve Leave",
+      "type": "checkbox",
+      "id": "Field_ApproveCheckbox",
+      "key": "approved",
+      "defaultValue": true,
+      "description": "Tick to approve the employee's leave request."
+    },
+    {
+      "label": "Approver Comments",
+      "type": "textfield",
+      "id": "Field_Comments",
+      "key": "comments",
+      "description": "Optional notes or remarks regarding the approval."
+    }
+  ],
+  "type": "default"
+}
